@@ -1,0 +1,18 @@
+C:\Users\tomaa\source\repos\PU-MIP12-zad2\Repository Pattern\bin\Debug\net5.0\Repository Pattern.deps.json
+C:\Users\tomaa\source\repos\PU-MIP12-zad2\Repository Pattern\bin\Debug\net5.0\Repository Pattern.runtimeconfig.json
+C:\Users\tomaa\source\repos\PU-MIP12-zad2\Repository Pattern\bin\Debug\net5.0\Repository Pattern.runtimeconfig.dev.json
+C:\Users\tomaa\source\repos\PU-MIP12-zad2\Repository Pattern\bin\Debug\net5.0\Repository Pattern.dll
+C:\Users\tomaa\source\repos\PU-MIP12-zad2\Repository Pattern\bin\Debug\net5.0\ref\Repository Pattern.dll
+C:\Users\tomaa\source\repos\PU-MIP12-zad2\Repository Pattern\bin\Debug\net5.0\Repository Pattern.pdb
+C:\Users\tomaa\source\repos\PU-MIP12-zad2\Repository Pattern\bin\Debug\net5.0\Model.dll
+C:\Users\tomaa\source\repos\PU-MIP12-zad2\Repository Pattern\bin\Debug\net5.0\Model.pdb
+C:\Users\tomaa\source\repos\PU-MIP12-zad2\Repository Pattern\obj\Debug\net5.0\Repository Pattern.csproj.AssemblyReference.cache
+C:\Users\tomaa\source\repos\PU-MIP12-zad2\Repository Pattern\obj\Debug\net5.0\Repository Pattern.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tomaa\source\repos\PU-MIP12-zad2\Repository Pattern\obj\Debug\net5.0\Repository Pattern.AssemblyInfoInputs.cache
+C:\Users\tomaa\source\repos\PU-MIP12-zad2\Repository Pattern\obj\Debug\net5.0\Repository Pattern.AssemblyInfo.cs
+C:\Users\tomaa\source\repos\PU-MIP12-zad2\Repository Pattern\obj\Debug\net5.0\Repository Pattern.csproj.CoreCompileInputs.cache
+C:\Users\tomaa\source\repos\PU-MIP12-zad2\Repository Pattern\obj\Debug\net5.0\Repository Pattern.dll
+C:\Users\tomaa\source\repos\PU-MIP12-zad2\Repository Pattern\obj\Debug\net5.0\ref\Repository Pattern.dll
+C:\Users\tomaa\source\repos\PU-MIP12-zad2\Repository Pattern\obj\Debug\net5.0\Repository Pattern.pdb
+C:\Users\tomaa\source\repos\PU-MIP12-zad2\Repository Pattern\obj\Debug\net5.0\Repository Pattern.genruntimeconfig.cache
+C:\Users\tomaa\source\repos\PU-MIP12-zad2\Repository Pattern\obj\Debug\net5.0\Repository Pattern.csproj.CopyComplete
