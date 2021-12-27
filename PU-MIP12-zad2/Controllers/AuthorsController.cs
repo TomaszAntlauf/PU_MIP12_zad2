@@ -26,6 +26,12 @@ namespace ProgramowanieUzytkoweIP12.Controllers
             return this.repo.GetAuthors(pagination);
         }
 
+        [HttpGet("/Jeden autor")]
+        public AuthorDTO GetbyId(int Idx)
+        {
+            return this.repo.GetAuthorbyId(Idx);
+        }
+
         [HttpPost("/Dodaj autora")]
         public AuthorDTO Post([FromBody] AuthorRequestDTO brq)
         {

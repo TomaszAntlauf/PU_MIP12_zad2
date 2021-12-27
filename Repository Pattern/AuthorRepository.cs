@@ -22,16 +22,14 @@ namespace Repository_Pattern
             this.ec = ec;
         }
 
-        public int RandomAuhorRate(int i)
-        {
-            return rdm.Next(i);
-        }
-
         public List<AuthorDTO> GetAuthors(PaginationDTO pagination)
         {
-            return ec.Search<AuthorDTO>(x => x.Size(pagination.Count).Skip(pagination.Count * pagination.Page)
-            .Query(q => q
-            .MatchAll())).Documents.ToList();
+            return ec.Search<AuthorDTO>(x => x.Size(pagination.Count).Skip(pagination.Count * pagination.Page)).Documents.ToList();
+        }
+
+        public AuthorDTO GetAuthorbyId(int Idx)
+        {
+            return ec.Get<AuthorDTO>(Idx).Source;
         }
 
         public AuthorDTO PostAuthor(AuthorRequestDTO brq)
@@ -72,7 +70,7 @@ namespace Repository_Pattern
 
         public bool DeleteDTO(int id)
         {
-            Author del = Db.Authors.Include(x=>x.Books).Where(x => x.Id == id).FirstOrDefault();
+            Author del = Db.Authors.Include(x=>x.Books).FirstOrDefault(x => x.Id == id);
 
             if (del.Books.Any())
             {
@@ -103,15 +101,24 @@ namespace Repository_Pattern
 
             Db.SaveChanges();
 
-            des = Db.Authors.Where(x => x.Id == id).FirstOrDefault();
+            des = Db.Authors.Include(x=>x.Rates).Where(x => x.Id == id).FirstOrDefault();
 
             ec.Update<AuthorDTO>(id, u => u
             .Doc(new AuthorDTO
             {
+                Id=des.Id,
+                FirstName=des.FirstName,
+                SecondName=des.SecondName,
+                CV=des.CV,
                 AvarageRates = des.Rates.Average(r => r.Value),
                 RatesCount = des.Rates.Count()
             }));
 
+        }
+
+        public int RandomAuhorRate(int i)
+        {
+            return rdm.Next(i);
         }
     }
 }

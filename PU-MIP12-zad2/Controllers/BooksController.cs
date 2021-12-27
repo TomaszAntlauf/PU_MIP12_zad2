@@ -45,7 +45,7 @@ namespace ProgramowanieUzytkoweIP12.Controllers
         }
 
         [HttpPost("/Dodaj ocene ksiazce")]
-        public void AddBookRate([FromBody] int id, int rate)
+        public void AddBookRate(int id, int rate)
         {
             repo.AddBookRate(id, rate);
         }

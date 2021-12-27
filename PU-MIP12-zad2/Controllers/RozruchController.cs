@@ -13,94 +13,86 @@ namespace PU_MIP12_zad2.Controllers
     [ApiController]
     public class RozruchController : Controller
     {
-        public RozruchController(Repo rp, BooksRepository br, AuthorRepository ar)
+        public RozruchController(BooksRepository br, AuthorRepository ar)
         {
-            _rp = rp;
+            
             _br = br;
             _ar = ar;
         }
 
-        private Repo _rp { get; set; }
         private BooksRepository _br { get; set; }
         private AuthorRepository _ar { get; set; }
+
+        BookRequestDTO bqRqDTO;
+        AuthorRequestDTO aqRqDTO;
+
 
         [HttpGet("Rozruch")]
         public bool Rozruch()
         {
-            try {
-                if (_rp.ec.Indices.Exists("authors.index").Exists)
+            try
+            {
+                if (_br.GetBookbyId(1) == null)
                 {
-                    _rp.ec.Indices.Delete("authors.index");
-                }
-
-                if (_rp.ec.Indices.Exists("books.index").Exists)
-                {
-                    _rp.ec.Indices.Delete("books.index");
-                };
-
-                _rp.ec.Indices.Create("authors.index", index => index.Map<AuthorDTO>(x => x.AutoMap()));
-                _rp.ec.Indices.Create("books.index", index => index.Map<BookDTO>(x => x.AutoMap()));
-
-                _ar.Db.Authors.RemoveRange(_ar.Db.Authors);
-                _br.Db.Books.RemoveRange(_ar.Db.Books); 
-                _ar.Db.AuthorRates.RemoveRange(_ar.Db.AuthorRates);
-                _br.Db.BookRates.RemoveRange(_ar.Db.BookRates);
-                _ar.Db.SaveChanges();
-                _br.Db.SaveChanges();
-
-                List<AuthorRequestDTO> listaA = new List<AuthorRequestDTO>();
-                List<BookRequestDTO> listaB = new List<BookRequestDTO>();
-
-                for (int a = 1; a <= 10; a++)
-                {
-                    var tempAuthor = new AuthorRequestDTO
+                    if (_ar.GetAuthorbyId(1) == null)
                     {
-                        FirstName = "RozruchAutorFName"+a,
-                        SecondName = "RozruchAutorSName" + a,
-                        CV = "string",
-                    };
-                    listaA.Add(tempAuthor);
-                }
+                        for (int i = 1; i <= 10; i++)
+                        {
+                            bqRqDTO = new BookRequestDTO
+                            {
+                                Title = "Tytuł" + i,
+                                ReleaseDate = DateTime.Now,
+                                Description = "Opis" + i,
+                                AuthorsId = new List<int> { }
+                            };
+                            aqRqDTO = new AuthorRequestDTO
+                            {
+                                FirstName = "Autor" + i,
+                                SecondName = "AutorNazwisko" + i,
+                                CV = "Dorobek" + i,
+                                BooksId = new List<int> { }
+                            };
 
-                foreach (var author in listaA)
-                {
-                    _ar.PostAuthor(author);
-                }
+                            _br.PostBook(bqRqDTO);
+                            _ar.PostAuthor(aqRqDTO);
 
-                for(int a = 1; a <= 10; a++)
-                {
-                    _ar.AddAuthorRate(a, _ar.RandomAuhorRate(5));
-                    _ar.AddAuthorRate(a, _ar.RandomAuhorRate(5));
-                    _ar.AddAuthorRate(a, _ar.RandomAuhorRate(5));
-                }
+                            _br.AddBookRate(i, _br.RandomBookRate(5));
+                            _br.AddBookRate(i, _br.RandomBookRate(5));
+                            _br.AddBookRate(i, _br.RandomBookRate(5));
+                            _ar.AddAuthorRate(i, _ar.RandomAuhorRate(5));
+                            _ar.AddAuthorRate(i, _ar.RandomAuhorRate(5));
+                            _ar.AddAuthorRate(i, _ar.RandomAuhorRate(5));
+                        }
 
-                for (int b = 1; b <= 10; b++)
-                {
-                    List<int> temp = new List<int>();
-                    temp.Add(b-1);
-                    var tempBook = new BookRequestDTO
-                    {
-                        Title = "RozruchKsiazka"+b,
-                        Description = "string",
-                        ReleaseDate = System.DateTime.Now,
-                        AuthorsId = temp
-                    };
-                    listaB.Add(tempBook);
-                }
+                        //bqRqDTO = new BookRequestDTO
+                        //{
+                        //    Title = "Tytuł" + 1,
+                        //    ReleaseDate = DateTime.Now,
+                        //    Description = "Opis" + 1,
+                        //    AuthorsId = new List<int> {}
+                        //};
+                        //aqRqDTO = new AuthorRequestDTO
+                        //{
+                        //    FirstName = "Autor" + 1,
+                        //    SecondName = "AutorNazwisko" + 1,
+                        //    CV = "Dorobek" + 1,
+                        //    BooksId = new List<int>{}
+                        //};
 
-                foreach (var book in listaB)
-                {
-                    _br.PostBook(book);
-                }
+                        //_br.PostBook(bqRqDTO);
+                        //_ar.PostAuthor(aqRqDTO);
 
-                for (int b = 1; b <= 10; b++)
-                {
-                    _br.AddBookRate(b, _br.RandomBookRate(5));
-                    _br.AddBookRate(b, _br.RandomBookRate(5));
-                    _br.AddBookRate(b, _br.RandomBookRate(5));
-                }
+                        //_br.AddBookRate(1, _br.RandomBookRate(5));
+                        ////_ar.AddAuthorRate(1, _ar.RandomAuhorRate(5));
+                        ////_br.AddBookRate(1, _br.RandomBookRate(5));
+                        ////_ar.AddAuthorRate(1, _ar.RandomAuhorRate(5));
+                        ////_br.AddBookRate(1, _br.RandomBookRate(5));
+                        ////_ar.AddAuthorRate(1, _ar.RandomAuhorRate(5));
 
-                return true;
+                        return true;
+                    }
+                }
+                return false;
             }
             catch (Exception e)
             {

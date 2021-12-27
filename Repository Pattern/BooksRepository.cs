@@ -19,15 +19,9 @@ namespace Repository_Pattern
             this.ec = ec;
         }
 
-        public int RandomBookRate(int i)
-        {
-            return rdm.Next(i);
-        }
         public List<BookDTO> GetBooks(PaginationDTO pagination)
         {
-            return ec.Search<BookDTO>(x => x.Size(pagination.Count).Skip(pagination.Count * pagination.Page)
-            .Query(q => q
-            .MatchAll())).Documents.ToList();
+            return ec.Search<BookDTO>(x => x.Size(pagination.Count).Skip(pagination.Count * pagination.Page)).Documents.ToList();
         }
 
         public BookDTO GetBookbyId(int Idx)
@@ -73,7 +67,7 @@ namespace Repository_Pattern
 
         public bool DeleteDTO(int id)
         {
-            Book del = Db.Books.Where(x => x.Id == id).FirstOrDefault();
+            Book del = Db.Books.Include(x => x.Authors).FirstOrDefault(x => x.Id == id);
 
             Db.Books.Remove(del);
             Db.SaveChanges();
@@ -98,16 +92,26 @@ namespace Repository_Pattern
 
             Db.SaveChanges();
 
-            des = Db.Books.Where(x => x.Id == id).FirstOrDefault();
+            des = Db.Books.Include(x => x.Rates).Where(x => x.Id == id).FirstOrDefault();
+
 
             ec.Update<BookDTO>(id, u => u
             .Doc(new BookDTO
             {
-                AvarageRates=des.Rates.Average(r => r.Value),
+                Id=des.Id,
+                Title=des.Title,
+                ReleaseDate = des.ReleaseDate,
+                Description = des.Description,
+                AvarageRates =des.Rates.Average(r => r.Value),
                 RatesCount=des.Rates.Count()
             })) ;
             
                
+        }
+
+        public int RandomBookRate(int i)
+        {
+            return rdm.Next(i);
         }
 
 

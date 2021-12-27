@@ -11,8 +11,8 @@ namespace Model
     {
         public Elasticconection(Uri uri = null) : base(uri)
         {
-            this.DefaultMappingFor<BookDTO>(x => x.IndexName("Ksiazka"));
-            this.DefaultMappingFor<AuthorDTO>(x => x.IndexName("Autor"));
+            this.DefaultMappingFor<BookDTO>(x => x.IndexName("ksiazka"));
+            this.DefaultMappingFor<AuthorDTO>(x => x.IndexName("autor"));
         }
     }
 }

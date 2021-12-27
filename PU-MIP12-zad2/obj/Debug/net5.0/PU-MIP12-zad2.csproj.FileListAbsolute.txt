@@ -60,3 +60,4 @@ C:\Users\tomaa\source\repos\PU-MIP12-zad2\PU-MIP12-zad2\obj\Debug\net5.0\PU-MIP1
 C:\Users\tomaa\source\repos\PU-MIP12-zad2\PU-MIP12-zad2\obj\Debug\net5.0\PU-MIP12-zad2.genruntimeconfig.cache
 C:\Users\tomaa\source\repos\PU-MIP12-zad2\PU-MIP12-zad2\bin\Debug\net5.0\Repository Pattern.dll
 C:\Users\tomaa\source\repos\PU-MIP12-zad2\PU-MIP12-zad2\bin\Debug\net5.0\Repository Pattern.pdb
+C:\Users\tomaa\source\repos\PU-MIP12-zad2\PU-MIP12-zad2\obj\Debug\net5.0\PU-MIP12-zad2.csproj.CopyComplete
